@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Fragment } from 'react';
+import Header from '../components/Layout/Header';
+import HeaderImg from '../components/HeaderImg/HeaderImg';
+import RecordsCard from '../components/PreviousRecords/RecordsCard';
+import Footer from '../components/Layout/Footer';
 
 const History = () => {
     return (
         <Fragment>
-            <h1>मुंबईचा डब्बावाला</h1>
+            <Header></Header>
+            <HeaderImg></HeaderImg>
+            <RecordsCard></RecordsCard> 
+            <br></br>
+            <Footer></Footer>
         </Fragment>);
 }
 

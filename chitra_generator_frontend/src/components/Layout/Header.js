@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router";
+import UpdateModal from '../UpdateProfile/UpdateModal';
 import imgSrc from "./assests/logo.svg"
 import {
     MDBContainer,
@@ -10,16 +11,23 @@ import {
     MDBNavbarNav,
     MDBNavbarItem,
     MDBNavbarLink,
-    MDBBtn,
     MDBDropdown,
     MDBDropdownToggle,
     MDBDropdownMenu,
     MDBDropdownItem,
     MDBCollapse,
+    MDBBtn,
+    MDBModal,
+    MDBModalDialog,
+    MDBModalContent,
+    MDBModalHeader,
+    MDBModalTitle,
+    MDBModalBody,
+    MDBModalFooter
 } from 'mdb-react-ui-kit';
 
 export default function Header() {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const logoutHandler = () => {
         localStorage.setItem("chitra_generator", "");
         navigate("/login");
@@ -67,6 +75,5 @@ export default function Header() {
 
                 </MDBCollapse>
             </MDBContainer>
-        </MDBNavbar>
-    );
+        </MDBNavbar>);
 }
