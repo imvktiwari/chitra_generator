@@ -25,17 +25,18 @@ mongoose
 
 /* ROUTES */
 const authRouter = require("./routes/auth");
-const mealsRouter = require("./routes/meals");
-const userinformation = require("./routes/userinformation");
-const updateuserinformation = require("./routes/updateuserinformation");
-const ordersRouter = require("./routes/orders");
-const orderuserinformation = require("./routes/orderuserinformation");
+// const mealsRouter = require("./routes/meals");
+// const userinformation = require("./routes/userinformation");
+// const updateuserinformation = require("./routes/updateuserinformation");
+// const ordersRouter = require("./routes/orders");
+// const orderuserinformation = require("./routes/orderuserinformation");
+
 app.use("", authRouter);
-app.use("", mealsRouter);
-app.use("", userinformation);
-app.use("", updateuserinformation);
-app.use("", ordersRouter);
-app.use("", orderuserinformation);
+// app.use("", mealsRouter);
+// app.use("", userinformation);
+// app.use("", updateuserinformation);
+// app.use("", ordersRouter);
+// app.use("", orderuserinformation);
 
 //PORT Connection
 app.listen(PORT, () => {

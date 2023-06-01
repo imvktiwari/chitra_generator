@@ -2,7 +2,19 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const { ObjectId } = mongoose.Schema;
 const UserSchema = new mongoose.Schema({
-    name: {
+    firstName: {
+        type: String,
+        default: "",
+    },
+    lastName: {
+        type: String,
+        default: "",
+    },
+    userName: {
+        type: String,
+        default: "",
+    },
+    phonenumber: {
         type: String,
         default: "",
     },
@@ -17,27 +29,6 @@ const UserSchema = new mongoose.Schema({
         required: true,
         min: 5,
     },
-    workaddress: {
-        type: String,
-        default: "",
-    },
-    city: {
-        type: String,
-        default: "",
-    },
-    postalcode: {
-        type: String,
-        default: "",
-    },
-    phonenumber: {
-        type: String,
-        default: "",
-    },
-    orders: [
-        {
-            id: ObjectId,
-        },
-    ],
 });
 
 UserSchema.methods.matchPassword = async function (enteredPassword) {

@@ -172,11 +172,11 @@ function Register() {
 
     };
 
-    // useEffect(() => {
-    //     if (localStorage["dabbawala"]) {
-    //         navigate("/");
-    //     }
-    // }, []);
+    useEffect(() => {
+        if (localStorage["chitra_generator"]) {
+            navigate("/");
+        }
+    }, []);
 
 
     return (

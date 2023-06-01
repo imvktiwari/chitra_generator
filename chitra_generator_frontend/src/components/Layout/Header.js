@@ -19,7 +19,11 @@ import {
 } from 'mdb-react-ui-kit';
 
 export default function Header() {
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
+    const logoutHandler = () => {
+        localStorage.setItem("chitra_generator", "");
+        navigate("/login");
+    }
     const [showBasic, setShowBasic] = useState(false);
 
     return (
@@ -51,16 +55,16 @@ export default function Header() {
                         </MDBNavbarItem>
                     </MDBNavbarNav>
 
-                    <MDBDropdown className='d-flex input-group w-auto' style={{color:"white"}}>
+                    <MDBDropdown className='d-flex input-group w-auto' style={{ color: "white" }}>
                         <MDBDropdownToggle tag='a' className='nav-link' role='button'>
                             Your Profile
                         </MDBDropdownToggle>
                         <MDBDropdownMenu>
                             <MDBDropdownItem link>Update your profile</MDBDropdownItem>
-                            <MDBDropdownItem link>Logout</MDBDropdownItem>
+                            <MDBDropdownItem onClick={logoutHandler} link>Logout</MDBDropdownItem>
                         </MDBDropdownMenu>
                     </MDBDropdown>
-                    
+
                 </MDBCollapse>
             </MDBContainer>
         </MDBNavbar>

@@ -4,7 +4,7 @@ const express = require("express")
 /* REGISTER USER */
 exports.register = async (req, res) => {
     try {
-        const { name, email, password, workaddress, phonenumber, city, postalcode } = req.body;
+        const { firstName, lastName, userName, phonenumber, email, password } = req.body;
         const foundUser = await User.findOne({ email });
         if (foundUser) {
             return res
@@ -14,21 +14,19 @@ exports.register = async (req, res) => {
         else {
             const hashedpassword = await bcrypt.hash(password, 10);
             const newuser = new User({
-                name,
+                firstName,
+                lastName,
+                userName,
+                phonenumber,
                 email,
                 password: hashedpassword,
-                workaddress,
-                phonenumber,
-                city,
-                postalcode,
-                orders: [],
             });
             console.log(newuser);
             let result = await newuser.save();
             return res.status(200).json({ message: "Registration sucessful" });
         }
     } catch (error) {
-        res.status(500).json({ error: error.response.data });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -37,6 +35,7 @@ exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
         const foundUser = await User.findOne({ email });
+        console.log(foundUser);
         if (!foundUser) {
             return res
                 .status(400)

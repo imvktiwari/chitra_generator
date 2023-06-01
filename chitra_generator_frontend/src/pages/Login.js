@@ -1,17 +1,88 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import Footer from '../components/Layout/Footer';
 import HeaderAuth from '../components/Layout/HeaderAuth';
 import { useNavigate } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import {
     MDBContainer,
-    MDBRow,
-    MDBCol,
     MDBInput,
     MDBBtn,
 } from 'mdb-react-ui-kit';
 
 function Login() {
+    const BACKEND_BASE_URL = "http://localhost:5000";
     const navigate = useNavigate();
+    const [enteredEmail, setEnteredEmail] = useState('');
+    const [enteredPassword, setEnteredPassword] = useState('');
+
+    const submitHandler = async (event) => {
+        event.preventDefault();
+
+        const enteredData = {
+            email: enteredEmail,
+            password: enteredPassword,
+        };
+        const entryData = async () => {
+            const response = await fetch(
+                `${BACKEND_BASE_URL}/login`, {
+                method: 'POST',
+                body: JSON.stringify(enteredData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+            );
+            if (!response.ok) {
+                throw new Error('Invalid Credentials !');
+            }
+            toast.success('Logged In', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+            // console.log(response.data.id);
+            localStorage.setItem(
+                "chitra_generator",
+                JSON.stringify(enteredEmail));
+            setTimeout(() => {
+                navigate("/");
+            }, 1000);
+            console.log(enteredData);
+        };
+        entryData().catch((error) => {
+            toast.error(error.message, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        });
+    };
+
+    useEffect(() => {
+        if (localStorage["chitra_generator"]) {
+            navigate("/");
+        }
+    }, []);
+
+    const emailChangeHandler = (event) => {
+        setEnteredEmail(event.target.value);
+    };
+
+    const passwordChangeHandler = (event) => {
+        setEnteredPassword(event.target.value);
+    };
     return (
         <>
             <HeaderAuth></HeaderAuth>
@@ -40,10 +111,10 @@ function Login() {
                                 >
                                     <div className='card-body p-5 shadow-5 text-center'>
                                         <h2 className='fw-bold mb-5'>Login now</h2>
-                                        <form>
-                                            
-                                            <MDBInput className='mb-4' type='email' id='registerEmail' label='Email' />
-                                            <MDBInput className='mb-4' type='password' id='registerPassword' label='Password' />
+                                        <form onSubmit={submitHandler}>
+
+                                            <MDBInput className='mb-4' value={enteredEmail} onChange={emailChangeHandler} type='email' id='registerEmail' label='Email' />
+                                            <MDBInput className='mb-4' value={enteredPassword} onChange={passwordChangeHandler} type='password' id='registerPassword' label='Password' />
 
                                             <MDBBtn type='submit' block className='mb-4' style={{ color: "white", background: "black" }}>
                                                 Sign in
@@ -51,7 +122,7 @@ function Login() {
 
                                             <div className='text-center'>
                                                 <p>Don't have an account ?</p>
-                                                <MDBBtn color='link' type='button' className='mx-1' style={{color:"black"}} onClick={() => {
+                                                <MDBBtn color='link' type='button' className='mx-1' style={{ color: "black" }} onClick={() => {
                                                     navigate("/register")
                                                 }}>Sign up here</MDBBtn>
                                             </div>
@@ -63,6 +134,7 @@ function Login() {
                         </div>
                     </div>
                 </section >
+                <ToastContainer></ToastContainer>
             </MDBContainer >
             <Footer></Footer>
         </>
