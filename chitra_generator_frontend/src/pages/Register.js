@@ -121,8 +121,7 @@ function Register() {
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }
-            );
+            });
             //ERROR
             if (!response.ok) {
                 throw new Error('You are already logged in!');

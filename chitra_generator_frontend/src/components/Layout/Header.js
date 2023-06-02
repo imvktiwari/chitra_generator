@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import imgSrc from "./assests/logo.svg"
 import {
     MDBContainer,
     MDBNavbar,
     MDBNavbarBrand,
     MDBNavbarToggler,
+    MDBRow,
+    MDBCol,
+    MDBInput,
     MDBIcon,
     MDBNavbarNav,
     MDBNavbarItem,
@@ -28,9 +33,36 @@ export default function Header() {
         navigate("/login");
     }
     const [showBasic, setShowBasic] = useState(false);
-
+    //Modal
     const [basicModal, setBasicModal] = useState(false);
     const toggleShow = () => setBasicModal(!basicModal);
+    //Updating Perssonal Information
+    const [editing, setEditing] = useState(false);
+    const BACKEND_BASE_URL = "http://localhost:5000";
+    const LoggedInEmail = localStorage.getItem("chitra_generator");
+
+    //Getting User's Information
+    const [firstName, setfirstName] = useState('');
+    const [lastName, setlastName] = useState('');
+    const [userName, setuserName] = useState('');
+    const [phoneNumber, setphoneNumber] = useState('');
+    const URL = `${BACKEND_BASE_URL}/userinformation/${LoggedInEmail.replace(/['"]+/g, '')}`;
+    useEffect(() => {
+        const fetchDetails = async () => {
+            const response = await fetch(URL);
+            if (!response.ok) {
+                throw new Error('Something went wrong!');
+            }
+            const responseData = await response.json();
+            setfirstName(responseData.firstName);
+            setlastName(responseData.lastName);
+            setuserName(responseData.userName);
+            setphoneNumber(responseData.phonenumber);
+        };
+        fetchDetails().catch((error) => {
+            alert("Something wrong happened!");
+        });
+    }, []);
 
     return (
         <>
@@ -38,17 +70,22 @@ export default function Header() {
                 <MDBModalDialog>
                     <MDBModalContent>
                         <MDBModalHeader>
-                            <MDBModalTitle>Your Profile</MDBModalTitle>
+                            <MDBModalTitle>Personal Information</MDBModalTitle>
                             <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
                         </MDBModalHeader>
-                        <MDBModalBody>...</MDBModalBody>
+                        <MDBModalBody>
+                            <MDBRow className='mb-4'>
+                                <MDBCol>
+                                    <MDBInput className='mb-4' disabled={true} id='first2' value={firstName} label='First name' />
+                                </MDBCol>
+                                <MDBCol>
+                                    <MDBInput className='mb-4' disabled={true} id='last2' value={lastName} label='Last name' />
+                                </MDBCol>
+                            </MDBRow>
 
-                        <MDBModalFooter>
-                            <MDBBtn color='secondary' onClick={toggleShow}>
-                                Close
-                            </MDBBtn>
-                            <MDBBtn>Save changes</MDBBtn>
-                        </MDBModalFooter>
+                            <MDBInput className='mb-4' type='text' disabled={true} value={userName} id='registerUsername' label='Username' />
+                            <MDBInput className='mb-4' type='number' disabled={true} value={phoneNumber} id='registerPhone' label='Phone Number' />
+                        </MDBModalBody>
                     </MDBModalContent>
                 </MDBModalDialog>
             </MDBModal>
@@ -87,6 +124,7 @@ export default function Header() {
                     </MDBCollapse>
                 </MDBContainer>
             </MDBNavbar>
+            <ToastContainer></ToastContainer>
         </>
     );
 }

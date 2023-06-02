@@ -80,7 +80,57 @@ const Home = () => {
         }
     }
 
+    const communityHandler = (event) => {
+        event.preventDefault;
+        console.log("dfghjk")
 
+        const LoggedInEmail = localStorage.getItem("chitra_generator");
+        const email = `${LoggedInEmail.replace(/['"]+/g, '')}`;
+
+        const enteredData = {
+            title: enteredValue,
+            url: imgurl,
+            email: email
+        };
+
+        console.log(enteredData);
+
+        const entryData = async () => {
+            const response = await fetch(
+                `${BACKEND_BASE_URL}/sharewithcommunity`, {
+                method: 'POST',
+                body: JSON.stringify(enteredData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            if (!response.ok) {
+                throw new Error('You are already logged in!');
+            }
+            toast.success('Successfully shared with community!', {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        }
+        entryData().catch((error) => {
+            toast.error('Some Error Occured', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        });
+    }
 
     return (
         <Fragment>
@@ -100,7 +150,7 @@ const Home = () => {
                                 alt='...'
                             /></MDBModalBody>
                         <MDBModalFooter>
-                            <MDBBtn style={{ backgroundColor: "black" }}>Share with the community</MDBBtn>
+                            <MDBBtn type="submit" onClick={communityHandler} style={{ backgroundColor: "black" }}>Share with the community</MDBBtn>
                         </MDBModalFooter>
                     </MDBModalContent>
                 </MDBModalDialog>

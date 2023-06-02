@@ -31,10 +31,16 @@ mongoose
 const authRouter = require("./routes/auth");
 const allPostsInformation = require("./routes/allPostsInformation");
 const newSearchRoute = require("./routes/NewSearch");
+const communitySharedRoute = require("./routes/communityShared");
+const userinformationRoute = require("./routes/userInformation")
+const updateuserinformationRoute = require("./routes/updateuserinformation")
 
 app.use("", authRouter);
 app.use("", allPostsInformation);
 app.use("", newSearchRoute);
+app.use("", communitySharedRoute);
+app.use("", userinformationRoute);
+app.use("", updateuserinformationRoute);
 
 //PORT Connection
 app.listen(PORT, () => {
