@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
+const fileUpload = require('express-fileupload');
 dotenv.config();
 //Connection
 const DATABASE_URL = process.env.DB_URL;
@@ -12,7 +13,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+//cloudinary
+app.use(fileUpload({
+  useTempFiles: true
+}))
 
 /* MONGOOSE CONNECT */
 mongoose
@@ -25,18 +29,12 @@ mongoose
 
 /* ROUTES */
 const authRouter = require("./routes/auth");
-// const mealsRouter = require("./routes/meals");
-// const userinformation = require("./routes/userinformation");
-// const updateuserinformation = require("./routes/updateuserinformation");
-// const ordersRouter = require("./routes/orders");
-// const orderuserinformation = require("./routes/orderuserinformation");
+const allPostsInformation = require("./routes/allPostsInformation");
+const newSearchRoute = require("./routes/NewSearch");
 
 app.use("", authRouter);
-// app.use("", mealsRouter);
-// app.use("", userinformation);
-// app.use("", updateuserinformation);
-// app.use("", ordersRouter);
-// app.use("", orderuserinformation);
+app.use("", allPostsInformation);
+app.use("", newSearchRoute);
 
 //PORT Connection
 app.listen(PORT, () => {

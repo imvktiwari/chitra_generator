@@ -54,7 +54,7 @@ function Login() {
             setTimeout(() => {
                 navigate("/");
             }, 1000);
-            console.log(enteredData);
+            // console.log(enteredData);
         };
         entryData().catch((error) => {
             toast.error(error.message, {

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router";
-import UpdateModal from '../UpdateProfile/UpdateModal';
 import imgSrc from "./assests/logo.svg"
 import {
     MDBContainer,
@@ -11,10 +10,6 @@ import {
     MDBNavbarNav,
     MDBNavbarItem,
     MDBNavbarLink,
-    MDBDropdown,
-    MDBDropdownToggle,
-    MDBDropdownMenu,
-    MDBDropdownItem,
     MDBCollapse,
     MDBBtn,
     MDBModal,
@@ -34,46 +29,64 @@ export default function Header() {
     }
     const [showBasic, setShowBasic] = useState(false);
 
+    const [basicModal, setBasicModal] = useState(false);
+    const toggleShow = () => setBasicModal(!basicModal);
+
     return (
-        <MDBNavbar fixed='top' expand='lg' dark bgColor='dark' >
-            <MDBContainer fluid>
-                <MDBNavbarBrand onClick={() => { navigate("/"); }} style={{ color: "white" }}>
-                    <img
-                        src={imgSrc}
-                        height='30'
-                        alt=''
-                        loading='lazy'
-                    />
-                    Chitra_Generator
-                </MDBNavbarBrand>
+        <>
+            <MDBModal show={basicModal} setShow={setBasicModal} tabIndex='-1'>
+                <MDBModalDialog>
+                    <MDBModalContent>
+                        <MDBModalHeader>
+                            <MDBModalTitle>Your Profile</MDBModalTitle>
+                            <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
+                        </MDBModalHeader>
+                        <MDBModalBody>...</MDBModalBody>
 
-                <MDBNavbarToggler
-                    aria-controls='navbarSupportedContent'
-                    aria-expanded='false'
-                    aria-label='Toggle navigation'
-                    onClick={() => setShowBasic(!showBasic)}
-                >
-                    <MDBIcon icon='bars' fas />
-                </MDBNavbarToggler>
+                        <MDBModalFooter>
+                            <MDBBtn color='secondary' onClick={toggleShow}>
+                                Close
+                            </MDBBtn>
+                            <MDBBtn>Save changes</MDBBtn>
+                        </MDBModalFooter>
+                    </MDBModalContent>
+                </MDBModalDialog>
+            </MDBModal>
+            {/* Navigation Buuton */}
+            <MDBNavbar fixed='top' expand='lg' dark bgColor='dark' >
+                <MDBContainer fluid>
+                    <MDBNavbarBrand onClick={() => { navigate("/"); }} style={{ color: "white" }}>
+                        <img
+                            src={imgSrc}
+                            height='30'
+                            alt=''
+                            loading='lazy'
+                        />
+                        Chitra_Generator
+                    </MDBNavbarBrand>
 
-                <MDBCollapse navbar show={showBasic}  >
-                    <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
-                        <MDBNavbarItem>
-                            <MDBNavbarLink onClick={() => { navigate("/history"); }}>History</MDBNavbarLink>
-                        </MDBNavbarItem>
-                    </MDBNavbarNav>
+                    <MDBNavbarToggler
+                        aria-controls='navbarSupportedContent'
+                        aria-expanded='false'
+                        aria-label='Toggle navigation'
+                        onClick={() => setShowBasic(!showBasic)}
+                    >
+                        <MDBIcon icon='bars' fas />
+                    </MDBNavbarToggler>
 
-                    <MDBDropdown className='d-flex input-group w-auto' style={{ color: "white" }}>
-                        <MDBDropdownToggle tag='a' className='nav-link' role='button'>
-                            Your Profile
-                        </MDBDropdownToggle>
-                        <MDBDropdownMenu>
-                            <MDBDropdownItem link>Update your profile</MDBDropdownItem>
-                            <MDBDropdownItem onClick={logoutHandler} link>Logout</MDBDropdownItem>
-                        </MDBDropdownMenu>
-                    </MDBDropdown>
+                    <MDBCollapse navbar show={showBasic}  >
+                        <MDBNavbarNav right fullWidth={false} className='mb-2 mb-lg-0'>
+                            <MDBNavbarItem>
+                                <MDBNavbarLink onClick={toggleShow}>Profile</MDBNavbarLink>
+                            </MDBNavbarItem>
+                            <MDBNavbarItem>
+                                <MDBNavbarLink onClick={logoutHandler}>Logout</MDBNavbarLink>
+                            </MDBNavbarItem>
+                        </MDBNavbarNav>
 
-                </MDBCollapse>
-            </MDBContainer>
-        </MDBNavbar>);
+                    </MDBCollapse>
+                </MDBContainer>
+            </MDBNavbar>
+        </>
+    );
 }

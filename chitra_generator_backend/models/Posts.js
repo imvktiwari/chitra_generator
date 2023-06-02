@@ -4,14 +4,13 @@ const OrderSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
-    date: {
+    url: {
         type: String,
         default: "",
     }, 
-    payment: {
+    title: {
         type: String,
         default: "",
     },
-    ordereditems: { type: Array },
 });
-module.exports = mongoose.model("orders", OrderSchema);
+module.exports = mongoose.model("posts", OrderSchema);
