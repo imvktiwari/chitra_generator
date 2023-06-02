@@ -15,7 +15,6 @@ import {
 
 //NOW USING REACT TO VALIDATE FORM
 const isEmpty = (value) => value.trim() === '';
-const isSixChars = (value) => value.trim().length === 6;//For Postal Code
 const isEightChars = (value) => value.trim().length >= 8;
 const isTenChars = (value) => value.trim().length === 10;
 const validateEmail = (email) => {
@@ -107,7 +106,7 @@ function Register() {
             firstName: enteredFirstName,
             lastName: enteredLastName,
             userName: enteredUserName,
-            phoneNumber: enteredPhoneNumber,
+            phonenumber: enteredPhoneNumber,
             email: enteredEmail,
             password: enteredPassword,
             repeatPassword: enteredRepeatPassword,

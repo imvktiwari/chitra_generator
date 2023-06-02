@@ -13,7 +13,7 @@ cloudinary.config({
 });
 
 const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey: "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",
 })
 
 const openai = new OpenAIApi(configuration);
