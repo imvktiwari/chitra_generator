@@ -24,13 +24,20 @@ import HeaderImg from '../components/HeaderImg/HeaderImg';
 import RecordsCard from '../components/PreviousRecords/RecordsCard';
 
 const Home = () => {
+    
+    useEffect(() => {
+        if (!localStorage["chitra_generator"]) {
+            navigate("/login");
+        }
+    }, []);
+
     const [enteredValue, setEnteredValue] = useState('');
     const [imgurl, setImgurl] = useState('https://i.pinimg.com/originals/3d/6a/a9/3d6aa9082f3c9e285df9970dc7b762ac.gif');
 
     const [basicModal, setBasicModal] = useState(false);
     const toggleShow = () => setBasicModal(!basicModal);
 
-    const BACKEND_BASE_URL = "http://localhost:5000";
+    const BACKEND_BASE_URL = "https://chitra-generator-backend.onrender.com";
     const navigate = useNavigate();
 
     //Submit Handler
@@ -57,7 +64,7 @@ const Home = () => {
 
             const fetchDetails = async () => {
                 const response = await fetch(URL);
-                console.log(response);
+                // console.log(response);
                 if (!response.ok) {
                     throw new Error('Something went wrong!');
                 }
@@ -82,7 +89,6 @@ const Home = () => {
 
     const communityHandler = (event) => {
         event.preventDefault;
-        console.log("dfghjk")
 
         const LoggedInEmail = localStorage.getItem("chitra_generator");
         const email = `${LoggedInEmail.replace(/['"]+/g, '')}`;
@@ -93,7 +99,7 @@ const Home = () => {
             email: email
         };
 
-        console.log(enteredData);
+        // console.log(enteredData);
 
         const entryData = async () => {
             const response = await fetch(

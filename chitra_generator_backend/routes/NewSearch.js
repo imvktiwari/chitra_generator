@@ -13,7 +13,7 @@ cloudinary.config({
 });
 
 const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: process.env.OPENAI_API_KEY,
 })
 
 const openai = new OpenAIApi(configuration);
@@ -26,7 +26,7 @@ newSearchRouter.get("/newsearch/:title", async (req, res) => {
             size: "1024x1024",
         });
         const image_url = response.data.data[0].url;
-        console.log(image_url);
+        // console.log(image_url);
         cloudinary.uploader.upload(image_url, (err, result) => {
             res.send(JSON.stringify({ url: result.url }));
         })

@@ -6,7 +6,7 @@ export default function RecordsCard() {
 
   const [previous, setPrevious] = useState([]);
 
-  const BACKEND_BASE_URL = "http://localhost:5000";
+  const BACKEND_BASE_URL = "https://chitra-generator-backend.onrender.com";
   const URL = `${BACKEND_BASE_URL}/allpostsinformation`;//to replace double inverted from email-id.
   useEffect(() => {
     const fetchDetails = async () => {

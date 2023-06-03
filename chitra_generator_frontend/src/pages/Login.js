@@ -12,7 +12,7 @@ import {
 } from 'mdb-react-ui-kit';
 
 function Login() {
-    const BACKEND_BASE_URL = "http://localhost:5000";
+    const BACKEND_BASE_URL = "https://chitra-generator-backend.onrender.com";
     const navigate = useNavigate();
     const [enteredEmail, setEnteredEmail] = useState('');
     const [enteredPassword, setEnteredPassword] = useState('');

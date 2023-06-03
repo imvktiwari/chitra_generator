@@ -27,6 +27,7 @@ import {
 } from 'mdb-react-ui-kit';
 
 export default function Header() {
+
     const navigate = useNavigate();
     const logoutHandler = () => {
         localStorage.setItem("chitra_generator", "");
@@ -38,7 +39,7 @@ export default function Header() {
     const toggleShow = () => setBasicModal(!basicModal);
     //Updating Perssonal Information
     const [editing, setEditing] = useState(false);
-    const BACKEND_BASE_URL = "http://localhost:5000";
+    const BACKEND_BASE_URL = "https://chitra-generator-backend.onrender.com";
     const LoggedInEmail = localStorage.getItem("chitra_generator");
 
     //Getting User's Information
@@ -46,10 +47,14 @@ export default function Header() {
     const [lastName, setlastName] = useState('');
     const [userName, setuserName] = useState('');
     const [phoneNumber, setphoneNumber] = useState('');
-    const URL = `${BACKEND_BASE_URL}/userinformation/${LoggedInEmail.replace(/['"]+/g, '')}`;
-    useEffect(() => {
+
+    const profileHandler = async () => {
+        if (!localStorage["chitra_generator"]) {
+            navigate("/login");
+            return;
+        }
         const fetchDetails = async () => {
-            const response = await fetch(URL);
+            const response = await fetch(`${BACKEND_BASE_URL}/userinformation/${LoggedInEmail.replace(/['"]+/g, '')}`);
             if (!response.ok) {
                 throw new Error('Something went wrong!');
             }
@@ -62,7 +67,9 @@ export default function Header() {
         fetchDetails().catch((error) => {
             alert("Something wrong happened!");
         });
-    }, []);
+        toggleShow();
+    }
+
 
     return (
         <>
@@ -114,7 +121,7 @@ export default function Header() {
                     <MDBCollapse navbar show={showBasic}  >
                         <MDBNavbarNav right fullWidth={false} className='mb-2 mb-lg-0'>
                             <MDBNavbarItem>
-                                <MDBNavbarLink onClick={toggleShow}>Profile</MDBNavbarLink>
+                                <MDBNavbarLink onClick={profileHandler}>Profile</MDBNavbarLink>
                             </MDBNavbarItem>
                             <MDBNavbarItem>
                                 <MDBNavbarLink onClick={logoutHandler}>Logout</MDBNavbarLink>
