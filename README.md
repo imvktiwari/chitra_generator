@@ -83,8 +83,10 @@ To run this project, you will need to add the following environment variables to
 
 ## Screenshots
 
-![App Screenshot]([![login.png](https://i.postimg.cc/02mmCKvX/login.png)](https://postimg.cc/SJSJSsJc))
-
+![login](https://github.com/imvktiwari/chitra_generator/assets/101259079/244a46c4-2fdb-471f-a1ae-7a7ed5a8ffa5)
+![register](https://github.com/imvktiwari/chitra_generator/assets/101259079/3ca43f5b-58ef-4c0b-a3c1-5f2c0091fd45)
+![home](https://github.com/imvktiwari/chitra_generator/assets/101259079/1a20cec8-96d9-44ea-bc2b-bd2dcd4b8a15)
+![newresponse](https://github.com/imvktiwari/chitra_generator/assets/101259079/2c3a215d-82c1-4fb7-91c8-d9699190fb11)
 
 ## Feedback
 
