@@ -64,7 +64,6 @@ const Home = () => {
 
             const fetchDetails = async () => {
                 const response = await fetch(URL);
-                // console.log(response);
                 if (!response.ok) {
                     throw new Error('Something went wrong!');
                 }
