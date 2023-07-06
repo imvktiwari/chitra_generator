@@ -1,6 +1,3 @@
-![login](https://github.com/imvktiwari/chitra_generator/assets/101259079/fd7a62b6-aa4b-44a2-b900-570144b45b81)
-![register](https://github.com/imvktiwari/chitra_generator/assets/101259079/d2af1888-43fc-4a24-897d-f1ec8dbd5e45)
-
 # Chitra_Generator
 
 Unleash the power of AI to generate captivating images. Chitra_Generator not only empowers you to generate awe-inspiring AI-generated images but also allows you to share your creations with our vibrant community.
