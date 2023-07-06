@@ -1,3 +1,5 @@
+![login](https://github.com/imvktiwari/chitra_generator/assets/101259079/fd7a62b6-aa4b-44a2-b900-570144b45b81)
+![register](https://github.com/imvktiwari/chitra_generator/assets/101259079/d2af1888-43fc-4a24-897d-f1ec8dbd5e45)
 
 # Chitra_Generator
 
@@ -82,11 +84,12 @@ To run this project, you will need to add the following environment variables to
 
 
 ## Screenshots
+![login](https://github.com/imvktiwari/chitra_generator/assets/101259079/96c945a0-c83e-4cfd-be70-f6a867e57bed)
+![register](https://github.com/imvktiwari/chitra_generator/assets/101259079/f9839349-0b47-48b2-abfe-6d68ac87cc24)
+![home](https://github.com/imvktiwari/chitra_generator/assets/101259079/334a2436-0478-4d6e-9333-5f53f1472ddd)
+![newresponse](https://github.com/imvktiwari/chitra_generator/assets/101259079/3534734d-2735-47d1-914a-9a2dee687996)
 
-![login](https://github.com/imvktiwari/chitra_generator/assets/101259079/244a46c4-2fdb-471f-a1ae-7a7ed5a8ffa5)
-![register](https://github.com/imvktiwari/chitra_generator/assets/101259079/3ca43f5b-58ef-4c0b-a3c1-5f2c0091fd45)
-![home](https://github.com/imvktiwari/chitra_generator/assets/101259079/1a20cec8-96d9-44ea-bc2b-bd2dcd4b8a15)
-![newresponse](https://github.com/imvktiwari/chitra_generator/assets/101259079/2c3a215d-82c1-4fb7-91c8-d9699190fb11)
+
 
 ## Feedback
 
