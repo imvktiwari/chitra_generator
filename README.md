@@ -4,7 +4,7 @@ Unleash the power of AI to generate captivating images. Chitra_Generator not onl
 
 ## Demo
 
-https://chitra-generator-imvktiwari2003.netlify.app/
+
 
 
 ## 🚀 About Me
